@@ -1,4 +1,5 @@
-name: Build
+name: React app deployement
+
 on:
   push:
     branches: [ master ]
@@ -7,17 +8,11 @@ on:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+    
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - run : npm i
-        shell: bash
-      - run : npm run build
-        shell: bash
-      - run : git --work-tree build add --all
-        shell: bash
-      - run : git commit -m "yo"
-        shell: bash
-      - run : git push origin HEAD:gh-pages --force
-        shell: bash
+    - uses: actions/checkout@v2
+
+    - name: Deploy react app to github pages
+      uses: tanwanimohit/deploy-react-to-ghpages@v1.0.1
